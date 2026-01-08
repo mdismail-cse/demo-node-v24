@@ -1,0 +1,17 @@
+{
+  "name": "test-node-24",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "start": "node -e \"if(parseInt(process.versions.node.split('.')[0]) < 24) { console.error('Error: Node 24+ is required'); process.exit(1) }\" && node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
