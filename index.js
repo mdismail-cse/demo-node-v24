@@ -1,4 +1,19 @@
 import http from 'node:http';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Read required version from package.json
+let requiredNode = 'Not Specified';
+try {
+    const pkg = JSON.parse(readFileSync(join(__dirname, 'package.json'), 'utf8'));
+    requiredNode = pkg.engines?.node || 'Not Specified';
+} catch (e) {
+    console.error('Could not read package.json');
+}
 
 const PORT = process.env.PORT || 3000;
 
@@ -149,6 +164,10 @@ const html = `
             <div class="info-item">
                 <label>Node Version</label>
                 <span>${process.version}</span>
+            </div>
+            <div class="info-item">
+                <label>Required Node</label>
+                <span>${requiredNode}</span>
             </div>
             <div class="info-item">
                 <label>Environment</label>
