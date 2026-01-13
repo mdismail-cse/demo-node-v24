@@ -17,7 +17,9 @@ try {
 
 const PORT = process.env.PORT || 3000;
 
-const html = `
+const server = http.createServer((req, res) => {
+    // Generate fresh HTML on every request
+    const html = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -148,6 +150,16 @@ const html = `
             70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
         }
+
+        .live-dot {
+            height: 8px;
+            width: 8px;
+            background-color: var(--success);
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
     </style>
 </head>
 <body>
@@ -162,7 +174,7 @@ const html = `
         
         <div class="info-grid">
             <div class="info-item">
-                <label>Node Version</label>
+                <label>Current Node <span class="live-dot"></span></label>
                 <span>${process.version}</span>
             </div>
             <div class="info-item">
@@ -194,8 +206,6 @@ const html = `
 </body>
 </html>
 `;
-
-const server = http.createServer((req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/html');
     res.end(html);
