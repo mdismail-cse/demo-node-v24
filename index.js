@@ -182,7 +182,11 @@ const server = http.createServer((req, res) => {
     res.end(html);
 });
 
-server.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}/`);
-    console.log(`Pocess running with Node version: ${process.version}`);
+const HOST = '0.0.0.0';
+
+server.listen(PORT, HOST, () => {
+    console.log(`🚀 Server is live!`);
+    console.log(`🔗 Local:   http://localhost:${PORT}`);
+    console.log(`🔗 Public:  http://0.0.0.0:${PORT}`);
+    console.log(`Process running with Node version: ${process.version}`);
 });
