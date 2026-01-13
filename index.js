@@ -143,7 +143,7 @@ const html = `
             Operational
         </div>
         <h1>Deployment Success</h1>
-        <p>Your Node.js application has been successfully deployed and is running on Node 24.</p>
+        <p>Your Node.js application has been successfully deployed and is running on Node ${process.version.split('.')[0]}.</p>
         
         <div class="info-grid">
             <div class="info-item">
@@ -187,6 +187,6 @@ const HOST = '0.0.0.0';
 server.listen(PORT, HOST, () => {
     console.log(`🚀 Server is live!`);
     console.log(`🔗 Local:   http://localhost:${PORT}`);
-    console.log(`🔗 Public:  http://0.0.0.0:${PORT}`);
+    console.log(`🔗 Public:  http://YOUR_SERVER_IP:${PORT}`);
     console.log(`Process running with Node version: ${process.version}`);
 });
